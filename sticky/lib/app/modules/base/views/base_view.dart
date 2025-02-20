@@ -70,15 +70,15 @@ class BaseView extends GetView<BaseController> {
                 _mBottomNavItem(
                   label: 'Favorites',
                   icon: Constants.favoritesIcon,
-                ),
+                ), // 피드를 볼 수 있도록 뜨고 관심 목록 오른쪽 위에 클릭해서 볼 수 있게
                 _mBottomNavItem(
-                  label: 'Cart',
-                  icon: Constants.cartIcon,
-                ),
+                  label: 'Posting',
+                  icon: Constants.increaseIcon,
+                ), // 판매 게시글, 피드 올릴 수 있는 탭
                 _mBottomNavItem(
-                  label: 'Notifications',
-                  icon: Constants.notificationsIcon,
-                ),
+                  label: 'Sticker',
+                  icon: Constants.stickerIcon,
+                ), // 스티커 검색 탭
                 _mBottomNavItem(
                   label: 'Settings',
                   icon: Constants.settingsIcon,
