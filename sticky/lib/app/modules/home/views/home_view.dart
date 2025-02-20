@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
 import '../../../components/product_item.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
+import '../../../../utils/constants.dart';
+import '../../notifications/views/notifications_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -11,6 +15,25 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () => Get.toNamed('/notifications'),
+            icon: SvgPicture.asset(
+              Constants.notificationsIcon,
+              color: Get.theme.iconTheme.color,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              Constants.searchIcon,
+              color: Get.theme.iconTheme.color,
+            ),
+          ),
+        ],
+      ),
       // Optional: AppBar 추가해서 상단 알림 아이콘 등도 넣을 수 있음
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
