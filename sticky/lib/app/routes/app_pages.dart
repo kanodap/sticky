@@ -10,12 +10,16 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/notifications/bindings/notifications_binding.dart';
 import '../modules/notifications/views/notifications_view.dart';
+import '../modules/posting/bindings/posting_binding.dart';
+import '../modules/posting/views/posting_view.dart';
 import '../modules/product_details/bindings/product_details_binding.dart';
 import '../modules/product_details/views/product_details_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/sticker/bindings/sticker_binding.dart';
+import '../modules/sticker/views/sticker_view.dart';
 
 part 'app_routes.dart';
 
@@ -66,6 +70,16 @@ class AppPages {
       binding: ProductDetailsBinding(),
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 250),
+    ),
+    GetPage(
+      name: _Paths.STICKER,
+      page: () => const StickerView(),
+      binding: StickerBinding(),
+    ),
+    GetPage(
+      name: _Paths.POSTING,
+      page: () => const PostingView(),
+      binding: PostingBinding(),
     ),
   ];
 }

@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils/constants.dart';
+import '../../posting/views/posting_view.dart';
+import '../../sticker/views/sticker_view.dart';
 import '../controllers/base_controller.dart';
 import '../../cart/views/cart_view.dart';
 import '../../favorites/views/favorites_view.dart';
@@ -27,8 +29,8 @@ class BaseView extends GetView<BaseController> {
             children: const [
               HomeView(),
               FavoritesView(),
-              CartView(),
-              NotificationsView(),
+              PostingView(),
+              StickerView(),
               SettingsView()
             ],
           ),
