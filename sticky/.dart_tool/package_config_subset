@@ -346,10 +346,6 @@ yaml
 2.19
 file:///C:/Users/Kano/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2/
 file:///C:/Users/Kano/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2/lib/
-ecommerce_app
-3.0
-file:///C:/Users/Kano/Desktop/sticky/sticky/
-file:///C:/Users/Kano/Desktop/sticky/sticky/lib/
 _macros
 3.4
 file:///C:/flutter/bin/cache/dart-sdk/pkg/_macros/
@@ -382,4 +378,8 @@ integration_test
 3.2
 file:///C:/flutter/packages/integration_test/
 file:///C:/flutter/packages/integration_test/lib/
+ecommerce_app
+3.0
+file:///D:/flutters/sticky1/sticky/
+file:///D:/flutters/sticky1/sticky/lib/
 2
