@@ -20,6 +20,13 @@ class HomeView extends GetView<HomeController> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
+            onPressed: () => Get.toNamed(Routes.SEARCH),
+            icon: SvgPicture.asset(
+              Constants.searchIcon,
+              color: Get.theme.iconTheme.color,
+            ),
+          ),
+          IconButton(
             onPressed: () => Get.toNamed(Routes.NOTIFICATIONS),
             icon: SvgPicture.asset(
               Constants.notificationsIcon,
@@ -27,9 +34,9 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           IconButton(
-            onPressed: () => Get.toNamed(Routes.SEARCH),
+            onPressed: () => Get.toNamed(Routes.CART),
             icon: SvgPicture.asset(
-              Constants.searchIcon,
+              Constants.cartIcon,
               color: Get.theme.iconTheme.color,
             ),
           ),

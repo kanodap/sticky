@@ -12,6 +12,7 @@ import '../../favorites/views/favorites_view.dart';
 import '../../home/views/home_view.dart';
 import '../../notifications/views/notifications_view.dart';
 import '../../settings/views/settings_view.dart';
+import '../../feed/views/feed_view.dart';
 
 class BaseView extends GetView<BaseController> {
   const BaseView({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class BaseView extends GetView<BaseController> {
             index: controller.currentIndex,
             children: const [
               HomeView(),
-              FavoritesView(),
+              FeedView(),
               PostingView(),
               StickerView(),
               SettingsView()

@@ -22,6 +22,10 @@ import '../modules/sticker/bindings/sticker_binding.dart';
 import '../modules/sticker/views/sticker_view.dart';
 import '../modules/search/bindings/search_binding.dart';
 import '../modules/search/views/search_view.dart';
+import '../modules/feed/bindings/feed_binding.dart';
+import '../modules/feed/views/feed_view.dart';
+import '../modules/bookmark/bindings/bookmark_binding.dart';
+import '../modules/bookmark/views/bookmark_view.dart';
 
 
 part 'app_routes.dart';
