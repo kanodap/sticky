@@ -14,6 +14,8 @@ abstract class Routes {
   static const STICKER = _Paths.STICKER;
   static const POSTING = _Paths.POSTING;
   static const SEARCH = _Paths.SEARCH;
+  static const FEED = _Paths.FEED;
+  static const BOOKMARK = _Paths.BOOKMARK;
 }
 
 abstract class _Paths {
@@ -29,4 +31,6 @@ abstract class _Paths {
   static const STICKER = '/sticker';
   static const POSTING = '/posting';
   static const SEARCH = '/search';
+  static const FEED = '/feed';
+  static const BOOKMARK = '/bookmark';
 }

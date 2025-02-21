@@ -89,5 +89,15 @@ class AppPages {
       page: () => const SearchView(),
       binding: SearchBinding(),
     ),
+    GetPage(
+      name: _Paths.FEED,
+      page: () => const FeedView(),
+      binding: FeedBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKMARK,
+      page: () => const BookmarkView(),
+      binding: BookmarkBinding(),
+    ),
   ];
 }
