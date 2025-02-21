@@ -8,6 +8,7 @@ import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
 import '../../../../utils/constants.dart';
 import '../../notifications/views/notifications_view.dart';
+import '../../../routes/app_pages.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -19,14 +20,14 @@ class HomeView extends GetView<HomeController> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () => Get.toNamed('/notifications'),
+            onPressed: () => Get.toNamed(Routes.NOTIFICATIONS),
             icon: SvgPicture.asset(
               Constants.notificationsIcon,
               color: Get.theme.iconTheme.color,
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => Get.toNamed(Routes.SEARCH),
             icon: SvgPicture.asset(
               Constants.searchIcon,
               color: Get.theme.iconTheme.color,

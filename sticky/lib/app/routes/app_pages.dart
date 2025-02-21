@@ -20,6 +20,9 @@ import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/sticker/bindings/sticker_binding.dart';
 import '../modules/sticker/views/sticker_view.dart';
+import '../modules/search/bindings/search_binding.dart';
+import '../modules/search/views/search_view.dart';
+
 
 part 'app_routes.dart';
 
@@ -80,6 +83,11 @@ class AppPages {
       name: _Paths.POSTING,
       page: () => const PostingView(),
       binding: PostingBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }

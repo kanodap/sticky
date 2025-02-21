@@ -13,6 +13,7 @@ abstract class Routes {
   static const PRODUCT_DETAILS = _Paths.PRODUCT_DETAILS;
   static const STICKER = _Paths.STICKER;
   static const POSTING = _Paths.POSTING;
+  static const SEARCH = _Paths.SEARCH;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const PRODUCT_DETAILS = '/product-details';
   static const STICKER = '/sticker';
   static const POSTING = '/posting';
+  static const SEARCH = '/search';
 }
