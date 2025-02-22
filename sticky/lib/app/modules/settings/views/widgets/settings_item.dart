@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../../../utils/constants.dart';
 import '../../controllers/settings_controller.dart';
+import '../../../../routes/app_pages.dart';
 
 class SettingsItem extends StatelessWidget {
   final String title;
@@ -24,10 +25,17 @@ class SettingsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme;
     return ListTile(
-      title: Text(title, style: theme.textTheme.displayMedium?.copyWith(
-        fontSize: 16.sp,
-      )),
-      subtitle: !isAccount ? null : Text(
+      // Account 항목일 경우, ListTile 전체에 onTap을 지정해도 좋습니다.
+      onTap: isAccount ? () => Get.toNamed(Routes.LOGIN) : null,
+      title: Text(
+        title,
+        style: theme.textTheme.displayMedium?.copyWith(
+          fontSize: 16.sp,
+        ),
+      ),
+      subtitle: !isAccount
+          ? null
+          : Text(
         '+218 92 00 000 00',
         style: theme.textTheme.displaySmall,
       ),
@@ -37,26 +45,42 @@ class SettingsItem extends StatelessWidget {
         child: SvgPicture.asset(icon, fit: BoxFit.none),
       ),
       trailing: isDark
-        ? GetBuilder<SettingsController>(
-            id: 'Theme',
-            builder: (controller) => CupertinoSwitch(
-              value: !controller.isLightTheme,
-              onChanged: controller.changeTheme,
-              activeColor: theme.primaryColor,
-            ),
-          )
-        : Container(
-            width: 40.w,
-            height: 40.h,
-            decoration: BoxDecoration(
-              color: theme.primaryColor,
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-            child: SvgPicture.asset(
-              Constants.forwardArrowIcon,
-              fit: BoxFit.none
-            ),
+          ? GetBuilder<SettingsController>(
+        id: 'Theme',
+        builder: (controller) => CupertinoSwitch(
+          value: !controller.isLightTheme,
+          onChanged: controller.changeTheme,
+          activeColor: theme.primaryColor,
+        ),
+      )
+          : isAccount
+          ? GestureDetector(
+        onTap: () => Get.toNamed(Routes.LOGIN),
+        child: Container(
+          width: 40.w,
+          height: 40.h,
+          decoration: BoxDecoration(
+            color: theme.primaryColor,
+            borderRadius: BorderRadius.circular(10.r),
           ),
+          child: SvgPicture.asset(
+            Constants.forwardArrowIcon,
+            fit: BoxFit.none,
+          ),
+        ),
+      )
+          : Container(
+        width: 40.w,
+        height: 40.h,
+        decoration: BoxDecoration(
+          color: theme.primaryColor,
+          borderRadius: BorderRadius.circular(10.r),
+        ),
+        child: SvgPicture.asset(
+          Constants.forwardArrowIcon,
+          fit: BoxFit.none,
+        ),
+      ),
     );
   }
 }

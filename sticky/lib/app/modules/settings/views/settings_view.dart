@@ -54,11 +54,6 @@ class SettingsView extends GetView<SettingsController> {
             ),
             25.verticalSpace,
             const SettingsItem(
-              title: 'Language',
-              icon: Constants.languageIcon,
-            ),
-            25.verticalSpace,
-            const SettingsItem(
               title: 'Help',
               icon: Constants.helpIcon,
             ),
