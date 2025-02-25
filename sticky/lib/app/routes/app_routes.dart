@@ -17,6 +17,7 @@ abstract class Routes {
   static const FEED = _Paths.FEED;
   static const BOOKMARK = _Paths.BOOKMARK;
   static const LOGIN = _Paths.LOGIN;
+  static const SIGNUP = _Paths.SIGNUP;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const FEED = '/feed';
   static const BOOKMARK = '/bookmark';
   static const LOGIN = '/login';
+  static const SIGNUP = '/signup';
 }

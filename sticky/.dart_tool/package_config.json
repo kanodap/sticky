@@ -578,10 +578,10 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2025-02-21T14:35:25.489003Z",
+  "generated": "2025-02-25T04:58:51.699615Z",
   "generator": "pub",
-  "generatorVersion": "3.6.1",
+  "generatorVersion": "3.6.0",
   "flutterRoot": "file:///C:/flutter",
-  "flutterVersion": "3.27.3",
+  "flutterVersion": "3.27.1",
   "pubCache": "file:///C:/Users/Kano/AppData/Local/Pub/Cache"
 }

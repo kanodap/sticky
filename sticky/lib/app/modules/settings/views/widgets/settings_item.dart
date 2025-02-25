@@ -25,20 +25,28 @@ class SettingsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme;
     return ListTile(
-      // Account 항목일 경우, ListTile 전체에 onTap을 지정해도 좋습니다.
-      onTap: isAccount ? () => Get.toNamed(Routes.LOGIN) : null,
+      onTap: isAccount
+          ? () {
+        // 만약 제목이 "Login"이면 로그인 화면으로, 그렇지 않으면 Profile(마이페이지)로 이동
+        if (title == 'Login') {
+          Get.toNamed(Routes.LOGIN);
+        } else {
+          Get.toNamed(Routes.FAVORITES);
+        }
+      }
+          : null,
       title: Text(
         title,
         style: theme.textTheme.displayMedium?.copyWith(
           fontSize: 16.sp,
         ),
       ),
-      subtitle: !isAccount
+      /*subtitle: !isAccount
           ? null
           : Text(
         '+218 92 00 000 00',
         style: theme.textTheme.displaySmall,
-      ),
+      ),*/
       leading: CircleAvatar(
         radius: isAccount ? 30.r : 25.r,
         backgroundColor: theme.primaryColor,

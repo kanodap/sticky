@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -25,10 +26,21 @@ class LoginView extends GetView<LoginController> {
               obscureText: true,
               decoration: const InputDecoration(labelText: "Password"),
             ),
-            SizedBox(height: 30.h),
+            SizedBox(height: 50.h),
             ElevatedButton(
               onPressed: controller.login,
+              style: ElevatedButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20), // Adjust the text size here
+              ),
               child: const Text("Login"),
+            ),
+            SizedBox(height: 20.h), // Add space between buttons
+            ElevatedButton(
+              onPressed: () => Get.toNamed(Routes.SIGNUP),
+              style: ElevatedButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20), // Adjust the text size here
+              ),
+              child: const Text("Signup"),
             ),
           ],
         ),

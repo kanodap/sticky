@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 
 import '../../../../utils/constants.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/settings_controller.dart';
 import 'widgets/settings_item.dart';
+import '../../../data/local/my_shared_pref.dart';
 
 class SettingsView extends GetView<SettingsController> {
   const SettingsView({Key? key}) : super(key: key);
@@ -32,11 +32,20 @@ class SettingsView extends GetView<SettingsController> {
                 fontWeight: FontWeight.normal,
               )
             ),
-            20.verticalSpace,
-            const SettingsItem(
-              title: 'Mike Tyson',
-              icon: Constants.userIcon,
-              isAccount: true,
+            SizedBox(height: 20.h),
+            GetBuilder<SettingsController>(
+              id: 'Account',
+              builder: (controller) {
+                // 로그인되어 있으면 사용자의 이름, 아니면 "Login" 표시
+                final displayName = controller.userName.isNotEmpty
+                    ? controller.userName 
+                    : 'Login';
+                return SettingsItem(
+                  title: displayName,
+                  icon: Constants.userIcon,
+                  isAccount: true,
+                );
+              },
             ),
             30.verticalSpace,
             Text(

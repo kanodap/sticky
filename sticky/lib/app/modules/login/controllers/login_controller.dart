@@ -1,15 +1,28 @@
+import 'dart:convert';
 import 'package:get/get.dart';
 
+import '../../../data/local/my_shared_pref.dart';
+
 class LoginController extends GetxController {
-  // 로그인에 필요한 변수
   String email = '';
   String password = '';
 
-  // 간단한 로그인 로직 (실제 구현은 필요에 따라 수정)
-  void login() {
-    // 예시: 콘솔에 로그인 정보를 출력 후 이전 화면으로 돌아감
-    print("Logging in with email: $email, password: $password");
-    // 로그인 성공 후 Home이나 원하는 화면으로 이동하도록 구현 가능
-    Get.back();
+  Future<void> login() async {
+    // MySharedPref를 통해 저장된 사용자 데이터를 가져옵니다.
+    final userDataString = MySharedPref.getUserData();
+    if (userDataString == null) {
+      Get.snackbar("Error", "회원가입 정보가 없습니다.");
+      return;
+    }
+    final userData = jsonDecode(userDataString);
+    if (userData['email'] == email && userData['password'] == password) {
+      Get.snackbar("Success", "로그인 성공");
+      // 로그인 성공 후, 메인 화면(예: '/base')으로 이동
+      Get.offNamed('/base');
+    } else {
+      Get.snackbar("Error", "잘못된 이메일 또는 비밀번호");
+    }
   }
 }
+
+
