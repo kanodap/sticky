@@ -13,6 +13,7 @@ class SettingsItem extends StatelessWidget {
   final String icon;
   final bool isAccount;
   final bool isDark;
+  final VoidCallback? onTap; // 추가: 외부에서 onTap을 지정할 수도 있음
 
   const SettingsItem({
     Key? key,
@@ -20,6 +21,7 @@ class SettingsItem extends StatelessWidget {
     required this.icon,
     this.isAccount = false,
     this.isDark = false,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -28,31 +30,25 @@ class SettingsItem extends StatelessWidget {
     return ListTile(
       onTap: isAccount
           ? () {
-        // 만약 제목이 "Login"이면 로그인 화면으로, 그렇지 않으면 Profile(마이페이지)로 이동
         if (title == 'Login') {
           Get.toNamed(Routes.LOGIN);
-        }  else if (title == 'Sign Out') {
-          // Sign Out 항목을 탭하면, SettingsController의 userName을 빈 문자열로 만들어 계정 항목이 "Login"으로 보이게 하고,
-          final settingsController = Get.find<SettingsController>();
-          settingsController.userName = '';
-          settingsController.update(['Account']);
+        } else if (title == 'Sign Out') {
+          // 'settings' 태그로 등록된 SettingsController 인스턴스를 가져와 로그아웃 처리
+          final settingsController =
+          Get.find<SettingsController>();
+          settingsController.logout();
         } else {
+          // 로그인되어 있고, title이 "Login"이나 "Sign Out"이 아니면 프로필 페이지로 이동
           Get.toNamed(Routes.FAVORITES);
         }
       }
-          : null,
+          : onTap,
       title: Text(
         title,
         style: theme.textTheme.displayMedium?.copyWith(
           fontSize: 16.sp,
         ),
       ),
-      /*subtitle: !isAccount
-          ? null
-          : Text(
-        '+218 92 00 000 00',
-        style: theme.textTheme.displaySmall,
-      ),*/
       leading: CircleAvatar(
         radius: isAccount ? 30.r : 30.r,
         backgroundColor: theme.primaryColor,
@@ -61,41 +57,26 @@ class SettingsItem extends StatelessWidget {
       trailing: isDark
           ? GetBuilder<SettingsController>(
         id: 'Theme',
-        builder: (controller) =>
-            CupertinoSwitch(
-              value: !controller.isLightTheme,
-              onChanged: controller.changeTheme,
-              activeColor: theme.primaryColor,
-            ),
-      )
-          : GestureDetector(
-        onTap: () {
-          if (isAccount) {
-            if (title == 'Login') {
-              Get.toNamed(Routes.LOGIN);
-            } else if (title == 'Sign Out') {
-              // Sign Out 항목을 탭하면, SettingsController의 userName을 빈 문자열로 만들어 계정 항목이 "Login"으로 보이게 하고,
-              final settingsController = Get.find<SettingsController>();
-              settingsController.userName = '';
-              settingsController.update(['Account']);
-            } else {
-              Get.toNamed(Routes.FAVORITES);
-            }
-          }
-        },
-        child: Container(
-          width: 40.w,
-          height: 40.h,
-          decoration: BoxDecoration(
-            color: theme.primaryColor,
-            borderRadius: BorderRadius.circular(10.r),
-          ),
-          child: SvgPicture.asset(
-            Constants.forwardArrowIcon,
-            fit: BoxFit.none,
-          ),
+        builder: (controller) => CupertinoSwitch(
+          value: !controller.isLightTheme,
+          onChanged: controller.changeTheme,
+          activeColor: theme.primaryColor,
         ),
-      ),
+      )
+          : (!isAccount
+          ? Container(
+        width: 40.w,
+        height: 40.h,
+        decoration: BoxDecoration(
+          color: theme.primaryColor,
+          borderRadius: BorderRadius.circular(10.r),
+        ),
+        child: SvgPicture.asset(
+          Constants.forwardArrowIcon,
+          fit: BoxFit.none,
+        ),
+      )
+          : null),
     );
   }
 }
