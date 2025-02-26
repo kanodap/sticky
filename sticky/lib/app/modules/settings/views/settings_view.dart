@@ -70,6 +70,7 @@ class SettingsView extends GetView<SettingsController> {
             const SettingsItem(
               title: 'Sign Out',
               icon: Constants.logoutIcon,
+              isAccount: true,
             ),
             20.verticalSpace,
           ],

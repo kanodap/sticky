@@ -31,6 +31,11 @@ class SettingsItem extends StatelessWidget {
         // 만약 제목이 "Login"이면 로그인 화면으로, 그렇지 않으면 Profile(마이페이지)로 이동
         if (title == 'Login') {
           Get.toNamed(Routes.LOGIN);
+        }  else if (title == 'Sign Out') {
+          // Sign Out 항목을 탭하면, SettingsController의 userName을 빈 문자열로 만들어 계정 항목이 "Login"으로 보이게 하고,
+          final settingsController = Get.find<SettingsController>();
+          settingsController.userName = '';
+          settingsController.update(['Account']);
         } else {
           Get.toNamed(Routes.FAVORITES);
         }
@@ -49,7 +54,7 @@ class SettingsItem extends StatelessWidget {
         style: theme.textTheme.displaySmall,
       ),*/
       leading: CircleAvatar(
-        radius: isAccount ? 30.r : 25.r,
+        radius: isAccount ? 30.r : 30.r,
         backgroundColor: theme.primaryColor,
         child: SvgPicture.asset(icon, fit: BoxFit.none),
       ),
@@ -68,6 +73,11 @@ class SettingsItem extends StatelessWidget {
           if (isAccount) {
             if (title == 'Login') {
               Get.toNamed(Routes.LOGIN);
+            } else if (title == 'Sign Out') {
+              // Sign Out 항목을 탭하면, SettingsController의 userName을 빈 문자열로 만들어 계정 항목이 "Login"으로 보이게 하고,
+              final settingsController = Get.find<SettingsController>();
+              settingsController.userName = '';
+              settingsController.update(['Account']);
             } else {
               Get.toNamed(Routes.FAVORITES);
             }
