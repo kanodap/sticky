@@ -13,6 +13,7 @@ class SettingsItem extends StatelessWidget {
   final String icon;
   final bool isAccount;
   final bool isDark;
+
   const SettingsItem({
     Key? key,
     required this.title,
@@ -55,15 +56,23 @@ class SettingsItem extends StatelessWidget {
       trailing: isDark
           ? GetBuilder<SettingsController>(
         id: 'Theme',
-        builder: (controller) => CupertinoSwitch(
-          value: !controller.isLightTheme,
-          onChanged: controller.changeTheme,
-          activeColor: theme.primaryColor,
-        ),
+        builder: (controller) =>
+            CupertinoSwitch(
+              value: !controller.isLightTheme,
+              onChanged: controller.changeTheme,
+              activeColor: theme.primaryColor,
+            ),
       )
-          : isAccount
-          ? GestureDetector(
-        onTap: () => Get.toNamed(Routes.LOGIN),
+          : GestureDetector(
+        onTap: () {
+          if (isAccount) {
+            if (title == 'Login') {
+              Get.toNamed(Routes.LOGIN);
+            } else {
+              Get.toNamed(Routes.FAVORITES);
+            }
+          }
+        },
         child: Container(
           width: 40.w,
           height: 40.h,
@@ -75,18 +84,6 @@ class SettingsItem extends StatelessWidget {
             Constants.forwardArrowIcon,
             fit: BoxFit.none,
           ),
-        ),
-      )
-          : Container(
-        width: 40.w,
-        height: 40.h,
-        decoration: BoxDecoration(
-          color: theme.primaryColor,
-          borderRadius: BorderRadius.circular(10.r),
-        ),
-        child: SvgPicture.asset(
-          Constants.forwardArrowIcon,
-          fit: BoxFit.none,
         ),
       ),
     );
