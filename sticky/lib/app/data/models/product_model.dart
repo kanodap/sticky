@@ -8,6 +8,7 @@ class ProductModel {
   String? reviews;
   String? size;
   bool? isFavorite;
+  bool? isBookmarked;
   ProductModel({
     this.id,
     this.image,
@@ -17,6 +18,7 @@ class ProductModel {
     this.rating,
     this.reviews,
     this.size,
-    this.isFavorite
+    this.isFavorite,
+    this.isBookmarked
   });
 }
