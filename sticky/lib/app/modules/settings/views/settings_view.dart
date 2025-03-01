@@ -58,9 +58,22 @@ class SettingsView extends GetView<SettingsController> {
               isDark: true,
             ),
             SizedBox(height: 25.h),
-            const SettingsItem(
+            SettingsItem(
               title: 'Help',
               icon: Constants.helpIcon,
+              onTap: () {
+                Get.defaultDialog(
+                  title: 'Contact Email',
+                  content: Text(
+                    'toma12345@naver.com',
+                    style: TextStyle(fontSize: 10.sp),
+                  ),
+                  confirm: ElevatedButton(
+                    onPressed: () => Get.back(),
+                    child: const Text("Close"),
+                  ),
+                );
+              },
             ),
             SizedBox(height: 25.h),
             const SettingsItem(
