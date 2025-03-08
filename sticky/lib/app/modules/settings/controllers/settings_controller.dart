@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../config/theme/my_theme.dart';
 import '../../../data/local/my_shared_pref.dart';
 import '../../../routes/app_pages.dart';
@@ -29,15 +30,14 @@ class SettingsController extends GetxController {
   }
 
   Future<void> logout() async {
-    final userDataString = MySharedPref.getUserData();
-    if (userDataString != null && userDataString.isNotEmpty) {
-      final userData = jsonDecode(userDataString);
-      userData['isLoggedIn'] = false;
-      await MySharedPref.setUserData(jsonEncode(userData));
+    try {
+      await FirebaseAuth.instance.signOut();
+      Get.snackbar("Success", "로그아웃 성공");
+      // 로그아웃 후 Base 화면(메인 화면)으로 이동 (필요하다면 로그인 화면으로 이동)
+      Get.offAllNamed(Routes.LOGIN);
+    } catch (e) {
+      Get.snackbar("Error", "로그아웃 실패: ${e.toString()}");
     }
-    // 로그인 상태 초기화: userName을 빈 문자열로 만들어 "Login"으로 보이게 함
-    userName.value = '';
-    //Get.offAllNamed(Routes.BASE);
   }
 
   void changeTheme(bool value) {
