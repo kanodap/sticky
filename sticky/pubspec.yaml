@@ -14,8 +14,11 @@ dependencies:
   rename_app: 
   flutter_svg: ^2.0.17
   flutter_animate: 
-  get: 
-
+  get:
+  firebase_core: ^2.5.0
+  cloud_firestore: ^4.2.0
+  firebase_auth: ^4.2.5
+  firebase_storage: ^11.0.6
   flutter: 
     sdk: flutter
 
