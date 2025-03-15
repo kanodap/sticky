@@ -61,16 +61,6 @@ class SettingsItem extends StatelessWidget {
               style: TextStyle(fontSize: 16.sp, color: Colors.white),
             ),
           ),
-          trailing: isDark
-              ? Obx(() => CupertinoSwitch(
-            value: !controller.isLightTheme.value, // ✅ RxBool 값을 직접 참조
-            onChanged: (val) {
-              controller.changeTheme(!controller.isLightTheme.value); // ✅ 즉시 반영되도록 수정
-            },
-            activeColor: theme.primaryColor,
-          ))
-              : null,
-
         );
       });
     } else {
@@ -86,11 +76,16 @@ class SettingsItem extends StatelessWidget {
           child: SvgPicture.asset(icon, fit: BoxFit.none),
         ),
         trailing: isDark
-            ? Obx(() => CupertinoSwitch(
-          value: !controller.isLightTheme.value, // RxBool 값 사용
-          onChanged: onSwitchChanged,
-          activeColor: theme.primaryColor,
-        ))
+            ? Obx(() {
+          return CupertinoSwitch(
+            value: !controller.isLightTheme.value,
+            onChanged: (value) {
+              print("Switch toggled: $value");
+              controller.changeTheme(value);
+            },
+            activeColor: theme.primaryColor,
+          );
+        })
             : Container(
           width: 40.w,
           height: 40.h,

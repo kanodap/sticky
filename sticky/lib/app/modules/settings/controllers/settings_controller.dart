@@ -5,8 +5,9 @@ import '../../../data/local/my_shared_pref.dart';
 import '../../../routes/app_pages.dart';
 
 class SettingsController extends GetxController {
-  // RxBool로 관리하여 UI가 즉시 반영되도록 변경
-  RxBool isLightTheme = MySharedPref.getThemeIsLight().obs;
+  RxBool isLightTheme = MySharedPref
+      .getThemeIsLight()
+      .obs;
 
   Rx<User?> currentUser = FirebaseAuth.instance.currentUser.obs;
 
@@ -35,8 +36,15 @@ class SettingsController extends GetxController {
 
   /// 테마 변경 함수
   void changeTheme(bool value) async {
-    isLightTheme.value = value; // ✅ RxBool 값 먼저 변경하여 즉시 UI 반영
-    await MySharedPref.setThemeIsLight(value); // ✅ SharedPreferences 저장 (UI 업데이트 방해 X)
+    print("Before change: isLightTheme = ${isLightTheme.value}");
+
+    isLightTheme.value = !value;
+
+    print("After change: isLightTheme = ${isLightTheme.value}");
+
+    await MySharedPref.setThemeIsLight(!value);
+    print("Saved theme: ${MySharedPref.getThemeIsLight()}");
+    update();
   }
 }
 

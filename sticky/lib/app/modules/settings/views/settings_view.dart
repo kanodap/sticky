@@ -36,7 +36,6 @@ class SettingsView extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
 
-            // 계정 항목: 내부 SettingsItem에서 Obx 사용
             const SettingsItem(
               title: 'Login',
               icon: Constants.userIcon,
@@ -53,7 +52,6 @@ class SettingsView extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
 
-            // 다크 모드 토글: Obx 사용하여 즉시 반영
             Obx(() => SettingsItem(
               title: 'Dark Mode',
               icon: Constants.themeIcon,
@@ -84,7 +82,6 @@ class SettingsView extends StatelessWidget {
             ),
             SizedBox(height: 25.h),
 
-            // 로그아웃 항목
             SettingsItem(
               title: 'Sign Out',
               icon: Constants.logoutIcon,

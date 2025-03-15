@@ -25,6 +25,7 @@ Future<void> main() async {
       useInheritedMediaQuery: true,
       builder: (context, child) {
         bool themeIsLight = MySharedPref.getThemeIsLight();
+
         return GetMaterialApp(
           useInheritedMediaQuery: true,
           title: "STICKY",
