@@ -5,9 +5,7 @@ import '../../../data/local/my_shared_pref.dart';
 import '../../../routes/app_pages.dart';
 
 class SettingsController extends GetxController {
-  RxBool isLightTheme = MySharedPref
-      .getThemeIsLight()
-      .obs;
+  RxBool isLightTheme = MySharedPref.getThemeIsLight().obs;
 
   Rx<User?> currentUser = FirebaseAuth.instance.currentUser.obs;
 
@@ -44,7 +42,7 @@ class SettingsController extends GetxController {
 
     await MySharedPref.setThemeIsLight(!value);
     print("Saved theme: ${MySharedPref.getThemeIsLight()}");
-    update();
+    Get.forceAppUpdate();
   }
 }
 

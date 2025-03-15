@@ -56,7 +56,7 @@ class SettingsView extends StatelessWidget {
               title: 'Dark Mode',
               icon: Constants.themeIcon,
               isDark: true,
-              switchValue: !controller.isLightTheme.value, // ✅ RxBool 값 사용
+              switchValue: !controller.isLightTheme.value,
               onSwitchChanged: (value) {
                 controller.changeTheme(value);
               },
