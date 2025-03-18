@@ -26,7 +26,7 @@ class FavoritesView extends GetView<FavoritesController> {
             20.verticalSpace,
             GetBuilder<FavoritesController>(
               builder: (_) => controller.products.isEmpty
-                ? const NoData(text: 'No Products in Favorite Yet!')
+                ? const NoData(text: 'EMPTY!')
                 : GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,

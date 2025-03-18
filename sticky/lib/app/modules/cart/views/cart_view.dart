@@ -31,7 +31,7 @@ class CartView extends GetView<CartController> {
               ),
               20.verticalSpace,
               controller.products.isEmpty
-                ? const NoData(text: 'No Products in Your Cart Yet!')
+                ? const NoData(text: 'EMPTY!')
                 : ListView.builder(
                     itemCount: controller.products.length,
                     itemBuilder: (context, index) => CartItem(
