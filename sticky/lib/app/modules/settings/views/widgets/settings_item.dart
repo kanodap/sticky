@@ -38,7 +38,7 @@ class SettingsItem extends StatelessWidget {
       return Obx(() {
         final user = controller.currentUser.value;
         final displayName = user?.displayName ?? user?.email ?? "Login";
-        final avatarLetter = (user?.displayName ?? user?.email ?? "L")
+        final avatarLetter = (user?.displayName ?? user?.email ?? "?")
             .substring(0, 1)
             .toUpperCase();
         return ListTile(
@@ -46,7 +46,7 @@ class SettingsItem extends StatelessWidget {
             if (user == null) {
               Get.toNamed(Routes.LOGIN);
             } else {
-              Get.toNamed(Routes.FAVORITES);
+              Get.toNamed(Routes.PROFILE);
             }
           },
           title: Text(

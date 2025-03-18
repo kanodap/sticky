@@ -20,14 +20,11 @@ class SignupController extends GetxController {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      // 회원가입 성공 시, 추가 사용자 정보(예: name)를 Firestore 또는 로컬에 저장할 수 있음.
-      // 여기서는 간단히 SharedPreferences를 사용한 예시 (필요하다면 MySharedPref를 활용)
       final userData = jsonEncode({
         "name": name,
         "email": email,
         "uid": userCredential.user!.uid,
       });
-      //await MySharedPref._sharedPreferences.setString('userData', userData);
 
       Get.snackbar("Success", "회원가입이 완료되었습니다.");
       // 회원가입 후 로그인 화면으로 이동 (로그인 후 Base로 이동하도록 수정 가능)
