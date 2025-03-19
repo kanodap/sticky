@@ -1,9 +1,9 @@
-// 게시글 작성하는 UI 제공
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/posting_controller.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PostingView extends GetView<PostingController> {
   const PostingView({Key? key}) : super(key: key);
@@ -34,17 +34,57 @@ class PostingView extends GetView<PostingController> {
               ),
             ),
             20.verticalSpace,
-            // 이미지 선택 버튼 (예시)
+            // 이미지 선택 버튼 (카메라, 갤러리 선택)
             ElevatedButton(
               onPressed: () {
-                // 이미지 선택 로직 (예: 이미지 피커 호출)
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return SimpleDialog(
+                      title: const Text('Select Image'),
+                      children: [
+                        SimpleDialogOption(
+                          onPressed: () {
+                            controller.selectImage(ImageSource.camera);
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Camera'),
+                        ),
+                        SimpleDialogOption(
+                          onPressed: () {
+                            controller.selectImage(ImageSource.gallery);
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Gallery'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
               child: const Text("Select Image"),
             ),
             20.verticalSpace,
+            // 선택한 이미지 미리보기
+            Obx(() {
+              if (controller.imageFile.value != null) {
+                return Image.memory(
+                  controller.imageFile.value!,
+                  height: 200,
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            }),
+            20.verticalSpace,
+            // 게시글 제출 버튼 (업로드 중 로딩 인디케이터 포함)
             ElevatedButton(
               onPressed: () => controller.submitPost(),
-              child: const Text("Submit Post"),
+              child: Obx(() {
+                return controller.isLoading.value
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text("Submit Post");
+              }),
             ),
           ],
         ),
@@ -52,5 +92,6 @@ class PostingView extends GetView<PostingController> {
     );
   }
 }
+
 
 
