@@ -65,14 +65,14 @@ class CartItem extends GetView<CartController> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
-                      onTap: () => controller.onIncreasePressed(product.id!),
+                      onTap: () => controller.onDecreasePressed(product.id!),
                       child: SvgPicture.asset(Constants.decreaseIcon),
                     ),
                     10.horizontalSpace,
                     Text('${product.quantity}', style: theme.textTheme.displaySmall),
                     10.horizontalSpace,
                     GestureDetector(
-                      onTap: () => controller.onDecreasePressed(product.id!),
+                      onTap: () => controller.onIncreasePressed(product.id!),
                       child: SvgPicture.asset(Constants.increaseIcon),
                     ),
                   ],

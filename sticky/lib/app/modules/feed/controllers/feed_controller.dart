@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import '../../../../utils/dummy_helper.dart';
-import '../../../data/models/product_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../data/models/post_model.dart'; // Post 클래스 import
 
 class FeedController extends GetxController {
-  List<ProductModel> postings = [];
+  List<PostModel> postings = [];
 
   @override
   void onInit() {
@@ -11,18 +11,23 @@ class FeedController extends GetxController {
     super.onInit();
   }
 
-  void getPostings() {
-    postings = DummyHelper.products;
-    update();
-  }
+  void getPostings() async {
+    try {
+      // Firestore에서 posts 컬렉션의 데이터를 가져옵니다.
+      QuerySnapshot snapshot =
+      await FirebaseFirestore.instance.collection('posts').get();
 
-  /// 특정 제품의 북마크 상태를 토글하는 함수
-  void toggleBookmark(int postId) {
-    int index = postings.indexWhere((post) => post.id == postId);
-    if (index != -1) {
-      postings[index].isBookmarked = !(postings[index].isBookmarked ?? false);
+      // 가져온 데이터를 Post 객체 리스트로 변환
+      postings = snapshot.docs.map((doc) => PostModel.fromSnap(doc)).toList();
+
+      // UI 업데이트
       update();
+    } catch (e) {
+      // 에러 처리
+      print('Error loading posts: $e');
     }
   }
+
 }
+
 

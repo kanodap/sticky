@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../utils/constants.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/settings_controller.dart';
+import '../../../routes/app_pages.dart';
 import 'widgets/settings_item.dart';
 
-class SettingsView extends GetView<SettingsController> {
+class SettingsView extends StatelessWidget {
   const SettingsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
+    final controller = Get.find<SettingsController>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-      ),
+      appBar: AppBar(title: const Text("Settings")),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
@@ -24,6 +26,7 @@ class SettingsView extends GetView<SettingsController> {
             SizedBox(height: 30.h),
             const ScreenTitle(title: 'SETTINGS', dividerEndIndent: 230),
             SizedBox(height: 20.h),
+
             Text(
               'Account',
               style: theme.textTheme.displayMedium?.copyWith(
@@ -32,18 +35,14 @@ class SettingsView extends GetView<SettingsController> {
               ),
             ),
             SizedBox(height: 20.h),
-            // Obx를 사용해 controller.userName이 변경될 때마다 자동 업데이트
-            Obx(() {
-              final displayName = controller.userName.value.isNotEmpty
-                  ? controller.userName.value
-                  : 'Login';
-              return SettingsItem(
-                title: displayName,
-                icon: Constants.userIcon,
-                isAccount: true,
-              );
-            }),
+
+            const SettingsItem(
+              title: 'Login',
+              icon: Constants.userIcon,
+              isAccount: true,
+            ),
             SizedBox(height: 30.h),
+
             Text(
               'Settings',
               style: theme.textTheme.displayMedium?.copyWith(
@@ -52,34 +51,42 @@ class SettingsView extends GetView<SettingsController> {
               ),
             ),
             SizedBox(height: 20.h),
-            const SettingsItem(
+
+            Obx(() => SettingsItem(
               title: 'Dark Mode',
               icon: Constants.themeIcon,
               isDark: true,
-            ),
+              switchValue: !controller.isLightTheme.value,
+              onSwitchChanged: (value) {
+                controller.changeTheme(value);
+              },
+            )),
+
             SizedBox(height: 25.h),
+
             SettingsItem(
               title: 'Help',
               icon: Constants.helpIcon,
-              onTap: () {
-                Get.defaultDialog(
-                  title: 'Contact Email',
-                  content: Text(
-                    'toma12345@naver.com',
-                    style: TextStyle(fontSize: 10.sp),
-                  ),
-                  confirm: ElevatedButton(
-                    onPressed: () => Get.back(),
-                    child: const Text("Close"),
-                  ),
-                );
-              },
+              onTap: () => Get.dialog(
+                AlertDialog(
+                  title: const Text('Contact Email'),
+                  content: const Text('toma12345@naver.com'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Get.back(),
+                      child: const Text("Close"),
+                    ),
+                  ],
+                ),
+              ),
             ),
             SizedBox(height: 25.h),
-            const SettingsItem(
+
+            SettingsItem(
               title: 'Sign Out',
               icon: Constants.logoutIcon,
-              isAccount: true,
+              isAccount: false,
+              onTap: controller.logout,
             ),
             SizedBox(height: 20.h),
           ],
@@ -88,4 +95,10 @@ class SettingsView extends GetView<SettingsController> {
     );
   }
 }
+
+
+
+
+
+
 
