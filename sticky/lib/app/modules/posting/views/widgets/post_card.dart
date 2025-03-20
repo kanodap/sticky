@@ -166,36 +166,41 @@ class PostCard extends StatelessWidget {
           ),
 
           // 📌 DESCRIPTION & DATE
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${post['likes'].length} likes',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 4),
-                RichText(
-                  text: TextSpan(
-                    style: const TextStyle(color: Colors.black),
-                    children: [
-                      TextSpan(
-                        text: post['username'],
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(text: ' ${post['description']}'),
-                    ],
+          Align(
+            alignment: Alignment.centerLeft, // 👉 왼쪽 정렬 추가
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min, // 👉 Column이 내용물만큼만 차지하도록 설정
+                children: [
+                  Text(
+                    '${post['likes'].length} likes',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  DateFormat.yMMMd().format(post['datePublished'].toDate()),
-                  style: const TextStyle(color: Colors.grey, fontSize: 12),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  RichText(
+                    text: TextSpan(
+                      style: const TextStyle(color: Colors.black),
+                      children: [
+                        TextSpan(
+                          text: post['username'],
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(text: ' ${post['description']}'),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    DateFormat.yMMMd().format(post['datePublished'].toDate()),
+                    style: const TextStyle(color: Colors.grey, fontSize: 12),
+                  ),
+                ],
+              ),
             ),
           ),
+
         ],
       ),
     );
