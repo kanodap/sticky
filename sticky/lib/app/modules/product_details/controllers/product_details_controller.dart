@@ -11,7 +11,7 @@ class ProductDetailsController extends GetxController {
   ProductModel product = Get.arguments;
 
   // for the product size
-  var selectedSize = 'M';
+  var selectedOption = '1';
 
   /// when the user press on the favorite button
   onFavoriteButtonPressed() {
@@ -23,16 +23,16 @@ class ProductDetailsController extends GetxController {
   onAddToCartPressed() {
     var mProduct = DummyHelper.products.firstWhere((p) => p.id == product.id);
     mProduct.quantity = mProduct.quantity! + 1;
-    mProduct.size = selectedSize;
+    mProduct.option = selectedOption;
     Get.find<CartController>().getCartProducts();
     Get.back();
   }
 
   /// change the selected size
-  changeSelectedSize(String size) {
-    if (size == selectedSize) return;
-    selectedSize = size;
-    update(['Size']);
+  changeSelectedOption(String option) {
+    if (option == selectedOption) return;
+    selectedOption = option;
+    update(['Option']);
   }
 
 }

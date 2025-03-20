@@ -6,7 +6,7 @@ class ProductModel {
   double? price;
   double? rating;
   String? reviews;
-  String? size;
+  String? option;
   bool? isFavorite;
   bool? isBookmarked;
   ProductModel({
@@ -17,7 +17,7 @@ class ProductModel {
     this.price,
     this.rating,
     this.reviews,
-    this.size,
+    this.option,
     this.isFavorite,
     this.isBookmarked
   });

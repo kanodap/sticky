@@ -18,7 +18,7 @@ class ProfileView extends GetView<ProfileController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("NAME: ${controller.name}", style: TextStyle(fontSize: 25)),
+                Text("NAME: ${controller.username}", style: TextStyle(fontSize: 25)),
                 const SizedBox(height: 20),
 
                 Text("E-MAIL: ${controller.email}", style: TextStyle(fontSize: 25)),

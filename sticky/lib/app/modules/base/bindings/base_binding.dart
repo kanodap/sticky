@@ -5,6 +5,7 @@ import '../../cart/controllers/cart_controller.dart';
 import '../../favorites/controllers/favorites_controller.dart';
 import '../../feed/controllers/feed_controller.dart';
 import '../../home/controllers/home_controller.dart';
+import '../../login/controllers/login_controller.dart';
 import '../../notifications/controllers/notifications_controller.dart';
 import '../../settings/controllers/settings_controller.dart';
 import '../controllers/base_controller.dart';
@@ -21,5 +22,6 @@ class BaseBinding extends Bindings {
     Get.lazyPut<FeedController>(() => FeedController());
     Get.lazyPut<StickerController>(() => StickerController());
     Get.lazyPut<PostingController>(() => PostingController());
+    Get.lazyPut<LoginController>(() => LoginController());
   }
 }

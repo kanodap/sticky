@@ -92,14 +92,25 @@ class PostingController extends GetxController {
     if (postContent.isEmpty) {
       Get.snackbar('Error', 'Please enter a caption.');
       return;
-    } else{
-      print("Post content: &postContent");
+    } else {
+      print("Post content: $postContent");
     }
+
     isLoading.value = true;
-    // 현재 사용자 정보를 UserProvider에서 가져온다고 가정 (uid, username, photoUrl 포함)
-    final loginController = Get.find<LoginController>();
-    final currentUser = await loginController.getUserDetails();
+
     try {
+      // LoginController에서 현재 사용자 정보 가져오기
+      final loginController = Get.find<LoginController>();
+      final currentUser = await loginController.getUserDetails();
+
+      // 사용자가 로그인되어 있지 않으면 오류 처리
+      if (currentUser == null) {
+        Get.snackbar('Error', 'User not found. Please log in again.');
+        isLoading.value = false;
+        return;
+      }
+
+      // 게시글 업로드
       String res = await uploadPost(
         postContent,
         imageFile.value, // imageFile이 null이어도 처리 가능하도록 수정
@@ -107,6 +118,7 @@ class PostingController extends GetxController {
         currentUser.username,
         currentUser.photoUrl,
       );
+
       if (res == "success") {
         Get.snackbar('Success', 'Your post has been uploaded successfully.');
         clearImage();
@@ -117,8 +129,10 @@ class PostingController extends GetxController {
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
+
     isLoading.value = false;
   }
+
 
 
   Future<String> likePost(String postId, String uid, List likes) async {

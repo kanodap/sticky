@@ -15,7 +15,7 @@ class DummyHelper {
       price: 25.99,
       rating: 4.5,
       reviews: '1.2k reviews',
-      size: 'M',
+      option: '1',
       isFavorite: false,
     ),
     ProductModel(
@@ -26,7 +26,7 @@ class DummyHelper {
       price: 79.99,
       rating: 4.4,
       reviews: '10k reviews',
-      size: 'M',
+      option: '1',
       isFavorite: false
     ),
     ProductModel(
@@ -37,7 +37,7 @@ class DummyHelper {
       price: 129.99,
       rating: 4.3,
       reviews: '22k reviews',
-      size: 'M',
+      option: '1',
       isFavorite: false
     ),
     ProductModel(
@@ -48,7 +48,7 @@ class DummyHelper {
       price: 59.99,
       rating: 4.2,
       reviews: '3.4k reviews',
-      size: 'M',
+      option: '1',
       isFavorite: false
     ),
     ProductModel(
@@ -59,7 +59,7 @@ class DummyHelper {
       price: 39.99,
       rating: 4.1,
       reviews: '2.6k reviews',
-      size: 'M',
+      option: '1',
       isFavorite: false
     ),
     ProductModel(
@@ -70,7 +70,7 @@ class DummyHelper {
       price: 59.99,
       rating: 4.0,
       reviews: '5.8k reviews',
-      size: 'M',
+      option: '1',
       isFavorite: false
     ),
   ];

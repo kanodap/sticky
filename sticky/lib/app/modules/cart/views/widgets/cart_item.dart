@@ -53,7 +53,7 @@ class CartItem extends GetView<CartController> {
                 overflow: TextOverflow.ellipsis,
               ),
               5.verticalSpace,
-              Text('Size: ${product.size}', style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp)),
+              Text('Option: ${product.option}', style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp)),
               5.verticalSpace,
               Text('\$${product.price}', style: theme.textTheme.displayLarge?.copyWith(
                 fontSize: 18.sp,

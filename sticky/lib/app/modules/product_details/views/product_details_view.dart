@@ -131,7 +131,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Text(
-                  'Choose your size:',
+                  'Choose your option:',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.bold
@@ -146,31 +146,31 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: GetBuilder<ProductDetailsController>(
-                  id: 'Size',
+                  id: 'Option',
                   builder: (_) => Row(
                     children: [
                       SizeItem(
-                        onPressed: () => controller.changeSelectedSize('S'),
-                        label: 'S',
-                        selected: controller.selectedSize == 'S',
+                        onPressed: () => controller.changeSelectedOption('1'),
+                        label: '1',
+                        selected: controller.selectedOption == '1',
                       ),
                       10.horizontalSpace,
                       SizeItem(
-                        onPressed: () => controller.changeSelectedSize('M'),
-                        label: 'M',
-                        selected: controller.selectedSize == 'M',
+                        onPressed: () => controller.changeSelectedOption('2'),
+                        label: '2',
+                        selected: controller.selectedOption == '2',
                       ),
                       10.horizontalSpace,
                       SizeItem(
-                        onPressed: () => controller.changeSelectedSize('L'),
-                        label: 'L',
-                        selected: controller.selectedSize == 'L',
+                        onPressed: () => controller.changeSelectedOption('3'),
+                        label: '3',
+                        selected: controller.selectedOption == '3',
                       ),
                       10.horizontalSpace,
                       SizeItem(
-                        onPressed: () => controller.changeSelectedSize('XL'),
-                        label: 'XL',
-                        selected: controller.selectedSize == 'XL',
+                        onPressed: () => controller.changeSelectedOption('4'),
+                        label: '4',
+                        selected: controller.selectedOption == '4',
                       ),
                     ],
                   ).animate().fade().slideX(

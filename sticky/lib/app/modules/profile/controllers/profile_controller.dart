@@ -6,7 +6,7 @@ class ProfileController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  String name = "";
+  String username = "";
   String email = "";
   String phone = "";
   String address = "";
@@ -25,7 +25,7 @@ class ProfileController extends GetxController {
 
     if (userDoc.exists) {
       var data = userDoc.data() as Map<String, dynamic>;
-      name = data['name'] ?? '';
+      username = data['username'] ?? '';
       email = data['email'] ?? '';
       phone = data['phone'] ?? '';
       address = data['address'] ?? '';
